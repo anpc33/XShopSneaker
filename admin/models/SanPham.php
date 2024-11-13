@@ -214,7 +214,7 @@ class SanPham{
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
         }
-    }
+    }//shdbfhsdbjf
     public function getDetailSanPham($id)
     {
         try {
