@@ -15,6 +15,10 @@ class DonHangController
   public function listDonHang()
   {
     $donHang = $this->modelDonHang->getAll();  // Lấy tất cả đơn hàng
+    $arrPTTT = $this->modelDonHang->getPttt();
+
+
+    $pTTT = array_column($arrPTTT, 'ten_phuong_thuc', 'id');
 
     // Chuyển kết quả đến view
     require_once './views/DonHang/listDonHang.php';
@@ -31,12 +35,31 @@ class DonHangController
 
     // Gọi model để tìm kiếm đơn hàng
     $donHang = $this->modelDonHang->searchOrders($search, $status);
-
+    $arrPTTT = $this->modelDonHang->getPttt();
+    $pTTT = array_column($arrPTTT, 'ten_phuong_thuc', 'id');
 
 
 
     // Hiển thị kết quả tìm kiếm
     require_once './views/DonHang/listDonHang.php';
+  }
+
+  //Chi tiết đơn hàng
+
+  public function detailDonHang()
+  {
+    $id = $_GET['id'];
+    // var_dump($id);die;
+
+    // lấy thông tin đơn hàng ở bảng don_hangs
+    $donHang = $this->modelDonHang->getDetailDonHang($id);
+    // var_dump($donHang);die;
+    $arrPTTT = $this->modelDonHang->getPttt();
+    $pTTT = array_column($arrPTTT, 'ten_phuong_thuc', 'id');
+    // lấy danh sách sản phẩm đã đặt của đơn hàng ở bảng chi_tiet_don_hangs
+    $sanPhamDonHang = $this->modelDonHang->getListSpDonHang($id);
+    // var_dump($sanPhamDonHang);die();
+    require_once './views/donhang/detailDonHang.php';
   }
 
   // Xử lý xóa
@@ -60,8 +83,11 @@ class DonHangController
 
     $id = $_GET['id_don_hang'];
     $donHangShow = $this->modelDonHang->donHangShow($id);
+    //  print_r($donHangShow);die;
+    $arrPTTT = $this->modelDonHang->getPttt();
+    $pTTT = array_column($arrPTTT, 'ten_phuong_thuc', 'id');
 
-    // var_dump($danhMucw);
+    // var_dump($donHangShow);die;
     require_once './views/DonHang/updateDonHang.php';
   }
 
@@ -72,7 +98,7 @@ class DonHangController
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $id = isset($_POST['id']) ? intval($_POST['id']) : null;
       $trang_thai = trim($_POST['trang_thai']);
-
+      // var_dump($trang_thai);die;
       // Validate
       $Error = [];
       if (empty($trang_thai)) {
@@ -89,6 +115,7 @@ class DonHangController
         }
 
         // Điều hướng về danh sách đơn hàng
+        // echo"them thanh cong";
         header('Location: ?act=don-hang');
         exit();
       } else {

@@ -153,7 +153,7 @@
                                                         <select class="form-control" name="danh_muc_id" id="exampleFormControlSelect1">
                                                             <option selected disabled>Chọn mục sản phẩm</option>
                                                             <?php foreach ($danhMucs as $danhMuc): ?>
-                                                                <option <?= $danhMuc['id_danh_muc'] == $sanPham['danh_muc_id'] ? 'selected' : '' ?> value="<?= $danhMuc['id_danh_muc'] ?>"><?= $danhMuc['ten_danh_muc'] ?></option>
+                                                                <option <?= $danhMuc['id'] == $sanPham['danh_muc_id'] ? 'selected' : '' ?> value="<?= $danhMuc['id'] ?>"><?= $danhMuc['ten_danh_muc'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
 
@@ -188,6 +188,60 @@
                                             </form>
 
                                         </div>
+
+                                        <div class="page-content page-container" id="page-content">
+                                            <div class="padding">
+                                                <div class="row container d-flex justify-content-center">
+                                                    <div class="col-lg-8 grid-margin stretch-card">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title text-center">Thêm album ảnh sản phẩm</h4>
+                                                                <hr>
+                                                                <div class="table-responsive">
+                                                                    <form action="<?= BASE_URL_ADMIN . '?act=sua-album-anh-san-pham' ?>" method="post" enctype="multipart/form-data">
+                                                                        <table id="faqs" class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Ảnh</th>
+                                                                                    <th>File</th>
+                                                                                    <th>
+                                                                                        <div class="text-center"><button onclick="addfaqs();" type="button" class="badge badge-success"><i class="fa fa-plus"></i>ADD</button></div>
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <input type="hidden" name="san_pham_id" value="<?= $sanPham['id'] ?>">
+                                                                                <input type="hidden" id="img_delete" name="img_delete">
+                                                                                <?php foreach ($listAnhSanPham as $key => $value): ?>
+                                                                                    <tr id="faqs-row-<?= $key ?>">
+                                                                                        <input type="hidden" name="current_img_ids[]" value="<?= $value['id'] ?>">
+                                                                                        <td><img src="<?= BASE_URL . $value['link_hinh_anh'] ?>" style="width:50px; height:50px" alt=""></td>
+                                                                                        <td><input type="file" name="img_array[]" class="form-control"></td>
+                                                                                        <td class="mt-10"><button type="button" class="btn btn-danger" onclick="removeRow(<?= $key ?>, <?= $value['id'] ?>)"><i class="fa fa-trash"></i> Delete</button></td>
+
+                                                                                    </tr>
+                                                                                <?php endforeach ?>
+                                                                            </tbody>
+                                                                        </table>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="text-end">
+                                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
 
                                     </div>
                                 </div>
@@ -248,12 +302,42 @@
             <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
         </div>
     </div>
-
+    </div>
     <!-- JAVASCRIPT -->
     <?php
     require_once "views/layouts/libs_js.php";
     ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        var faqs_row = <?= count($listAnhSanPham) ?>;
+
+        function addfaqs() {
+            html = '<tr id="faqs-row' + faqs_row + '">';
+            html += '<td><img src="https://agiay.vn/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2023/07/giay-sneaker-nam-ag0290.jpeg.webp" style="width:50px; height:50px" alt=""></td>';
+            html += '<td><input type="file" name="img_array[]" class="form-control"></td>';
+
+
+            html += '<td class="mt-10"><button class="btn btn-danger" onclick="removeRow(' + faqs_row + ');"><i class="fa fa-trash"></i> Delete</button></td>';
+            html += '</tr>';
+
+            $('#faqs tbody').append(html);
+
+            faqs_row++;
+        }
+
+        function removeRow(rowId, imgId) {
+            $('#faqs-row-' + rowId).remove();
+            if (imgId !== null) {
+                var imgDeleteInput = document.getElementById('img_delete');
+                var currentValue = imgDeleteInput.value;
+                imgDeleteInput.value = currentValue ? currentValue + ',' + imgId : imgId;
+
+            }
+        }
+    </script>
 
 </body>
+
 
 </html>

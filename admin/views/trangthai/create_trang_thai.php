@@ -87,6 +87,8 @@
                                                                     <option value="Đã giao hàng">Đã giao hàng</option>
                                                                     <option value="Giao hàng thất bại">Giao hàng thất bại</option>
                                                                     <option value="Đã hủy">Đã hủy</option>
+                                                                    <option value="Đã hoàn thành">Đã hoàn thành</option>
+
                                                                 </select>
                                                                 <span class="text-danger">
                                                                     <?= !empty($_SESSION["errors"]['trang_thai']) ? $_SESSION["errors"]['trang_thai'] : '' ?>

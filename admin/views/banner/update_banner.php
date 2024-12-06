@@ -71,7 +71,7 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Cập nhật Danh Mục banner</h4>
-                                        
+
                                     </div><!-- end card header -->
                                     <div class="card-body">
                                         <!-- <p class="text-muted">Use <code>form-floating</code> class to enable floating labels with Bootstrap’s textual form fields.</p> -->
@@ -79,11 +79,11 @@
                                             <form action="?act=sua-banner" method="POST" enctype="multipart/form-data">
                                                 <input type="hidden" name="id" value="<?= $banNerw['id'] ?>">
                                                 <div class="row g-3">
-                                                
+
 
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
-                                                        
+
                                                             <label for="citynameInput" class="form-label">Tên danh mục banner</label>
                                                             <input type="text" class="form-control" placeholder="Slide" name='ten_danh_muc_banner' value="<?=$banNerw['ten_danh_muc_banner'] ?>">
                                                             <span class="text-danger">
@@ -91,19 +91,8 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4">
 
-                                                        <div class="mb-3">
-                                                            <label for="citynameInput" class="form-label">Ảnh</label>
-                                                            <input type="file" class="form-control" placeholder="Image" name='link_hinh_anh'  >
-                                                          
-                                                          
-                                                          
-                                                            
 
-                                                        </div>
-                                                    </div>
-                                                   
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
                                                             <label for="citynameInput" class="form-label">Ngày nhập</label>
@@ -123,10 +112,19 @@
                                                                 <option value="1" <?= $banNerw['trang_thai'] == 1 ? 'selected' : '' ?>>Đăng</option>
                                                                 <option value="2" <?= $banNerw['trang_thai'] == 2 ? 'selected' : '' ?>>Không đăng</option>
                                                             </select>
-                                                           
+
                                                         </div>
                                                     </div>
-                                                   
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="hinh_anh">Hình ảnh</label><br>
+                                                            <img src="<?= isset($banNerw['link_hinh_anh']) ? $banNerw['link_hinh_anh'] : ''; ?>" width="100" alt="Ảnh tin tức">
+                                                            <input type="hidden" name="hinh_anh_cu" value="<?= isset($banNerw['link_hinh_anh']) ? $banNerw['link_hinh_anh'] : ''; ?>">
+                                                            <label for="hinh_anh">Hình ảnh mới (nếu có)</label>
+                                                            <input type="file" class="form-control-file" name="link_hinh_anh">
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-lg-12">
                                                         <div class="text-end">
                                                             <button name="save" type="submit" class="btn btn-primary">Submit</button>

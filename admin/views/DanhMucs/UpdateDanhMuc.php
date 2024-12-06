@@ -8,128 +8,128 @@
 
 <head>
 
-    <meta charset="utf-8" />
-    <title>Cập nhật danh mục sản phẩm | Adadis Shop</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+ <meta charset="utf-8" />
+ <title>Cập nhật danh mục sản phẩm | Adadis Shop</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+ <meta content="Themesbrand" name="author" />
 
-    <!-- CSS -->
-    <?php
-    require_once "views/layouts/libs_css.php";
-    ?>
+ <!-- CSS -->
+ <?php
+ require_once "views/layouts/libs_css.php";
+ ?>
 
 </head>
 
 <body>
 
-    <!-- Begin page -->
-    <div id="layout-wrapper">
+ <!-- Begin page -->
+ <div id="layout-wrapper">
 
-        <!-- HEADER -->
-        <?php
-        require_once "views/layouts/header.php";
+  <!-- HEADER -->
+  <?php
+  require_once "views/layouts/header.php";
 
-        require_once "views/layouts/siderbar.php";
-        ?>
+  require_once "views/layouts/siderbar.php";
+  ?>
 
-        <!-- Left Sidebar End -->
-        <!-- Vertical Overlay-->
-        <div class="vertical-overlay"></div>
+  <!-- Left Sidebar End -->
+  <!-- Vertical Overlay-->
+  <div class="vertical-overlay"></div>
 
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="main-content">
+  <!-- ============================================================== -->
+  <!-- Start right Content here -->
+  <!-- ============================================================== -->
+  <div class="main-content">
 
-            <div class="page-content">
-                <div class="container-fluid">
+   <div class="page-content">
+    <div class="container-fluid">
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                                <h4 class="mb-sm-0">Quản lý Danh Mục</h4>
+     <div class="row">
+      <div class="col-12">
+       <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+        <h4 class="mb-sm-0">Quản lý Danh Mục</h4>
 
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
-                                        <li class="breadcrumb-item active">Cập nhật Danh Mục</li>
-                                    </ol>
-                                </div>
+        <div class="page-title-right">
+         <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
+          <li class="breadcrumb-item active">Cập nhật Danh Mục</li>
+         </ol>
+        </div>
 
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col">
-
-                            <div class="h-100">
+       </div>
+      </div>
+     </div>
 
 
-                                <div class="card">
-                                    <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Cập nhật Danh Mục</h4>
-                                        <div class="flex-shrink-0">
-                                            <!-- <div class="form-check form-switch form-switch-right form-switch-md">
+
+     <div class="row">
+      <div class="col">
+
+       <div class="h-100">
+
+
+        <div class="card">
+         <div class="card-header align-items-center d-flex">
+          <h4 class="card-title mb-0 flex-grow-1">Cập nhật Danh Mục</h4>
+          <div class="flex-shrink-0">
+           <!-- <div class="form-check form-switch form-switch-right form-switch-md">
                                             <label for="floating-form-showcode" class="form-label text-muted">Show Code</label>
                                             <input class="form-check-input code-switcher" type="checkbox" id="floating-form-showcode">
                                         </div> -->
-                                        </div>
-                                    </div><!-- end card header -->
-                                    <div class="card-body">
-                                        <!-- <p class="text-muted">Use <code>form-floating</code> class to enable floating labels with Bootstrap’s textual form fields.</p> -->
-                                        <div class="live-preview">
+          </div>
+         </div><!-- end card header -->
+         <div class="card-body">
+          <!-- <p class="text-muted">Use <code>form-floating</code> class to enable floating labels with Bootstrap’s textual form fields.</p> -->
+          <div class="live-preview">
 
 
 
 
-                                            <form action="?act=sua-danh-muc" method="POST" enctype="multipart/form-data">
-                                            <input type="hidden" name="id" value="<?= $danhMucw['id'] ?>">
-                                                <div class="row g-3">
-                                                    <div class="col-lg-4">
-                                                        <div class="form-floating">
-                                                            <input type="text" class="form-control" name="ten_danh_muc" value="<?= $danhMucw['ten_danh_muc'] ?>">
-                                                            <label for="ten_danh_muc">Tên danh mục</label>
-                                                            <span class="text-danger">
-                                                                <?= !empty($_SESSION['Error']['ten_danh_muc']) ? $_SESSION['Error']['ten_danh_muc'] : '' ?>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+           <form action="?act=sua-danh-muc" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $danhMucw['id'] ?>">
+            <div class="row g-3">
+             <div class="col-lg-4">
+              <div class="form-floating">
+               <input type="text" class="form-control" name="ten_danh_muc" value="<?= $danhMucw['ten_danh_muc'] ?>" required>
+               <label for="ten_danh_muc">Tên danh mục</label>
+               <span class="text-danger">
+                <?= !empty($_SESSION['Error']['ten_danh_muc']) ? $_SESSION['Error']['ten_danh_muc'] : '' ?>
+               </span>
+              </div>
+             </div>
 
-                                                    <div class="col-lg-4">
-                                                        <div class="form-floating">
-                                                            <input type="text" class="form-control" name="mo_ta" value="<?= $danhMucw['mo_ta'] ?>">
-                                                            <label for="mo_ta">Mô tả</label>
-                                                        </div>
-                                                    </div>
+             <div class="col-lg-4">
+              <div class="form-floating">
+               <input type="text" class="form-control" name="mo_ta" value="<?= $danhMucw['mo_ta'] ?>" required>
+               <label for="mo_ta">Mô tả</label>
+              </div>
+             </div>
 
-                                                    <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label for="ForminputState" class="form-label">Trạng thái</label>
-                                                                <select name="trang_thai" id="ForminputState" class="form-select" value="<?= $danhMucw['trang_thai'] ?>">
-                                                                    <option selected disabled>Chọn trạng thái</option>
-                                                                    <option value="1">Đăng </option>
-                                                                    <option value="2">Không đăng</option>
-                                                                </select>
-                                                                <span class="text-danger">
-                                                                    <?= !empty($_SESSION["errors"]['trang_thai']) ? $_SESSION["errors"]['trang_thai'] : '' ?>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="text-center">
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+             <div class="col-md-6">
+              <div class="mb-3">
+               <label for="ForminputState" class="form-label">Trạng thái</label>
+               <select name="trang_thai" id="ForminputState" class="form-select" value="<?= $danhMucw['trang_thai'] ?>">
+                <option selected disabled>Chọn trạng thái</option>
+                <option value="1" <?= $danhMucw['trang_thai'] == '1' ? 'selected' : '' ?>>Đăng</option>
+                <option value="2" <?= $danhMucw['trang_thai'] == '2' ? 'selected' : '' ?>>Không đăng</option>
+               </select>
+               <span class="text-danger">
+                <?= !empty($_SESSION["errors"]['trang_thai']) ? $_SESSION["errors"]['trang_thai'] : '' ?>
+               </span>
+              </div>
+             </div>
+             <div class="col-lg-12">
+              <div class="text-center">
+               <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+             </div>
+            </div>
+           </form>
 
-                                        </div>
-                                        <div class="d-none code-view">
-                                            <pre class="language-markup" style="height: 275px">
+          </div>
+          <div class="d-none code-view">
+           <pre class="language-markup" style="height: 275px">
 <code>&lt;form action=&quot;#&quot;&gt;
     &lt;div class=&quot;row g-3&quot;&gt;
         &lt;div class=&quot;col-lg-6&quot;&gt;
@@ -192,71 +192,71 @@
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/form&gt;</code></pre>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div> <!-- end .h-100-->
-
-                        </div> <!-- end col -->
-                    </div>
-
-                </div>
-                <!-- container-fluid -->
-            </div>
-            <!-- End Page-content -->
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> © Velzon.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by Themesbrand
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+          </div>
+         </div>
         </div>
-        <!-- end main content-->
+
+
+
+       </div> <!-- end .h-100-->
+
+      </div> <!-- end col -->
+     </div>
 
     </div>
-    <!-- END layout-wrapper -->
+    <!-- container-fluid -->
+   </div>
+   <!-- End Page-content -->
 
-
-
-    <!--start back-to-top-->
-    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
-    <!--end back-to-top-->
-
-    <!--preloader-->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner-border text-primary avatar-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
+   <footer class="footer">
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-sm-6">
+       <script>
+        document.write(new Date().getFullYear())
+       </script> © Velzon.
+      </div>
+      <div class="col-sm-6">
+       <div class="text-sm-end d-none d-sm-block">
+        Design & Develop by Themesbrand
+       </div>
+      </div>
+     </div>
     </div>
+   </footer>
+  </div>
+  <!-- end main content-->
 
-    <div class="customizer-setting d-none d-md-block">
-        <div class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
-            <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
-        </div>
-    </div>
+ </div>
+ <!-- END layout-wrapper -->
 
-    <!-- JAVASCRIPT -->
-    <?php
-    require_once "views/layouts/libs_js.php";
-    ?>
+
+
+ <!--start back-to-top-->
+ <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+  <i class="ri-arrow-up-line"></i>
+ </button>
+ <!--end back-to-top-->
+
+ <!--preloader-->
+ <div id="preloader">
+  <div id="status">
+   <div class="spinner-border text-primary avatar-sm" role="status">
+    <span class="visually-hidden">Loading...</span>
+   </div>
+  </div>
+ </div>
+
+ <div class="customizer-setting d-none d-md-block">
+  <div class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+   <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
+  </div>
+ </div>
+
+ <!-- JAVASCRIPT -->
+ <?php
+ require_once "views/layouts/libs_js.php";
+ ?>
 
 </body>
 

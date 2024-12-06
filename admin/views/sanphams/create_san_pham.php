@@ -51,7 +51,7 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
-                                        <li class="breadcrumb-item active">Danh mục Sản phẩm</li>
+                                        <li class="breadcrumb-item active">Quản lý Sản phẩm</li>
                                     </ol>
                                 </div>
 
@@ -155,7 +155,7 @@
                                                             <select class="form-control" name="danh_muc_id" id="exampleFormControlSelect1">
                                                                 <option selected disabled>Chọn mục sản phẩm</option>
                                                                 <?php foreach ($danhMucs as $danhMuc): ?>
-                                                                    <option value="<?= $danhMuc['id_danh_muc'] ?>"><?= $danhMuc['ten_danh_muc'] ?></option>
+                                                                    <option value="<?= $danhMuc['id'] ?>"><?= $danhMuc['ten_danh_muc'] ?></option>
                                                                 <?php endforeach ?>
                                                             </select>
 
@@ -170,9 +170,9 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class=" col-md-6">
+                                                        <div class="col-md-6">
                                                             <div class="mb-3">
-                                                                <label>Album ảnh</label>
+                                                                <label>Ablum ảnh</label>
                                                                 <input type="file" class="form-control" name="img_array[]" multiple>
 
                                                             </div>

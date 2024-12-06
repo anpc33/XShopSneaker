@@ -83,7 +83,7 @@
                     <!-- <p class="text-muted">Use <code>form-floating</code> class to enable floating labels with Bootstrap’s textual form fields.</p> -->
                     <div class="container my-5">
                     <form action="?act=sua-don-hang" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= $donHangShow['id_don_hang'] ?>">
+    <input type="hidden" name="id" value="<?= $donHangShow['id'] ?>">
 
     <!-- Thẻ card cho thông tin đơn hàng -->
     <div class="card shadow-sm mb-4">
@@ -95,7 +95,7 @@
                 <!-- Mã đơn hàng -->
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control form-control-lg" name="id_don_hang" value="<?= $donHangShow['id_don_hang'] ?>" disabled>
+                        <input type="text" class="form-control form-control-lg" name="id_don_hang" value="<?= $donHangShow['ma_don_hang'] ?>" disabled>
                         <label for="id_don_hang">Mã đơn hàng</label>
                     </div>
                 </div>
@@ -111,18 +111,13 @@
                 <!-- Phương thức thanh toán -->
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control form-control-lg" name="phuong_thuc_thanh_toan" value="<?= $donHangShow['phuong_thuc_thanh_toan'] ?>" disabled>
+                        <input type="text" class="form-control form-control-lg" name="phuong_thuc_thanh_toan" value="<?= $pTTT[$donHangShow['phuong_thuc_thanh_toan_id']] ?>" disabled>
                         <label for="phuong_thuc_thanh_toan">Phương thức thanh toán</label>
                     </div>
                 </div>
 
                 <!-- Trạng thái thanh toán -->
-                <div class="col-md-4">
-                    <div class="form-floating">
-                        <input type="text" class="form-control form-control-lg" name="trang_thai_thanh_toan" value="<?= $donHangShow['trang_thai_thanh_toan'] ?>" disabled>
-                        <label for="trang_thai_thanh_toan">Trạng thái thanh toán</label>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -139,12 +134,13 @@
                     <div class="mb-3">
                         <label for="ForminputState" class="form-label">Trạng thái đơn hàng</label>
                         <select name="trang_thai" id="ForminputState" class="form-select form-select-lg">
-                            <option value="16" <?= $donHangShow['trang_thai'] == 'Chưa xác nhận' ? 'selected' : '' ?>>Chưa xác nhận</option>
-                            <option value="12" <?= $donHangShow['trang_thai'] == 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
-                            <option value="18" <?= $donHangShow['trang_thai'] == 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
-                            <option value="19" <?= $donHangShow['trang_thai'] == 'Đã hoàn thành' ? 'selected' : '' ?>>Đã hoàn thành</option>
                             <option value="14" <?= $donHangShow['trang_thai'] == 'Chờ xác nhận' ? 'selected' : '' ?>>Chờ xác nhận</option>
-                            <option value="13" <?= $donHangShow['trang_thai'] == 'Đang vận chuyển' ? 'selected' : '' ?>>Đang vận chuyển</option>
+                            <option value="15" <?= $donHangShow['trang_thai'] == 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
+                            <option value="16" <?= $donHangShow['trang_thai'] == 'Đang vận chuyển' ? 'selected' : '' ?>>Đang vận chuyển</option>
+                            <option value="17" <?= $donHangShow['trang_thai'] == 'Đã giao hàng' ? 'selected' : '' ?>>Đã giao hàng</option>
+                            <option value="18" <?= $donHangShow['trang_thai'] == 'Đã hoàn thành' ? 'selected' : '' ?>>Đã hoàn thành</option>
+                            <option value="19" <?= $donHangShow['trang_thai'] == 'Đã thất bại' ? 'selected' : '' ?>>Đã thất bại</option>
+                            <option value="20" <?= $donHangShow['trang_thai'] == 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
                         </select>
                         <?php if (!empty($_SESSION["errors"]['trang_thai'])): ?>
                             <span class="text-danger"><?= $_SESSION["errors"]['trang_thai'] ?></span>

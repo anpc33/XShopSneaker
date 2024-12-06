@@ -66,91 +66,86 @@
 
               <div class="h-100">
                 <div class="card">
-                <div class="card-header align-items-center d-flex justify-content-between">
+                  <div class="card-header align-items-center d-flex justify-content-between">
 
 
 
-    <!-- Search Form -->
-    <form class="d-flex me-3" action="index.php?act=searchDonHang" method="POST" role="search">
-    <input type="search" class="form-control me-2" placeholder="Tìm mã đơn hàng..." aria-label="Search" name="search" />
-    <select class="form-control me-2" name="status">
-        <option value="">Tất cả trạng thái</option>
-        <option value="chưa xác nhận">Chưa xác nhận</option>
-        <option value="đã xác nhận">Đã xác nhận</option>
-        <option value="đã hủy">Đã hủy</option>
-        <option value="hoàn tất">Hoàn tất</option>
-        <option value="hoàn tất">Chờ xác nhận</option>
-        <option value="hoàn tất">Đang vận chuyển</option>
-    </select>
-    <input class="btn btn-outline-primary" type="submit" value="Tìm kiếm" />
-</form>
+                    <!-- Search Form -->
+                    <form class="d-flex me-3" action="index.php?act=searchDonHang" method="POST" role="search">
+                      <input type="search" class="form-control me-2" placeholder="Tìm mã đơn hàng..." aria-label="Search" name="search" />
+                      <select class="form-control me-2" name="status">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="Chờ xác nhận">Chờ xác nhận</option>
+                        <option value="Đã xác nhận">Đã xác nhận</option>
+                        <option value="Đang vận chuyển">Đang vận chuyển</option>
+                        <option value="Đã giao hàng">Đã giao hàng</option>
+                        <option value="Đã hoàn thành">Đã hoàn thành</option>
+                        <option value="Đã thất bại">Đã thất bại</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                      </select>
+                      <input class="btn btn-outline-primary" type="submit" value="Tìm kiếm" />
+                    </form>
 
+                  </div><!-- end card header -->
 
-
-
-
-
-
-    <div>
-        <a href="?act=" class="btn btn-soft-success material-shadow-none">
-            <i class="ri-add-circle-line align-middle me-1"></i>Xem chi tiết
-        </a>
-    </div>
-</div><!-- end card header -->
-
-<div class="card-body">
-    <div class="live-preview">
-        <div class="table-responsive">
-            <table class="table table-striped table-nowrap align-middle mb-0">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Mã đơn hàng</th>
-                        <th scope="col">Ngày đặt</th>
-                        <th scope="col">Trạng thái đơn hàng</th>
-                        <th scope="col">Hình Thức Thanh Toán</th>
-                        <th scope="col">Trạng Thái Thanh Toán</th>
-                        <th scope="col">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($donHang)): ?>
-                        <?php foreach ($donHang as $index => $donHangItem): ?>
+                  <div class="card-body">
+                    <div class="live-preview">
+                      <div class="table-responsive">
+                        <table class="table table-striped table-nowrap align-middle mb-0">
+                          <thead>
                             <tr>
-                                <td class="fw-medium"><?= $index + 1 ?></td>
-                                <td><?= ($donHangItem['id_don_hang']) ?></td>
-                                <td><?= ($donHangItem['ngay_dat_hang']) ?></td>
-                                <td><?= ($donHangItem['trang_thai']) ?></td>
-                                <td><?= ($donHangItem['phuong_thuc_thanh_toan']) ?></td>
-                                <td><?= ($donHangItem['trang_thai_thanh_toan']) ?></td>
-                                <td>
-                                    <div class="hstack gap-3 flex-wrap">
-                                        <a href="?act=form-sua-don-hang&id_don_hang=<?= $donHangItem['id_don_hang'] ?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
-
-                                        <?php if ($donHangItem['trang_thai'] === 'Đã hủy'): ?>
-                                            <form action="?act=delete-don-hang" method="POST" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
-                                                <input type="hidden" name="id_don_hang" value="<?= $donHangItem['id_don_hang'] ?>">
-                                                <button class="link-danger fs-15" style="border: none; background: none;">
-                                                    <i class="ri-delete-bin-line"></i>
-                                                </button>
-                                            </form>
-                                        <?php endif; ?>
-                                    </div>
-                                </td>
+                              <th scope="col">#</th>
+                              <th scope="col">Mã đơn hàng</th>
+                              <th scope="col">Ngày đặt</th>
+                              <th scope="col">Trạng thái đơn hàng</th>
+                              <th scope="col">Phương Thức Thanh Toán</th>
+                              <th scope="col">Thao tác</th>
                             </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr><td colspan="7" class="text-center">Không tìm thấy kết quả.</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                          </thead>
+                          <tbody>
+                            <?php if (!empty($donHang)): ?>
+                              <?php foreach ($donHang as $index => $donHangItem): ?>
+                                <tr>
+                                  <td class="fw-medium"><?= $index + 1 ?></td>
+                                  <td><?= ($donHangItem['ma_don_hang']) ?></td>
+                                  <td><?= ($donHangItem['ngay_dat_hang']) ?></td>
+                                  <td><?= ($donHangItem['trang_thai']) ?></td>
+                                  <td><?= ($pTTT[$donHangItem['phuong_thuc_thanh_toan_id']]) ?></td>
+                                  <td>
+                                    <div class="hstack gap-3 flex-wrap">
 
 
-                    <div class="d-none code-view">
-                      <pre class="language-markup" style="height: 275px;"><code>&lt;table class=&quot;table table-nowrap&quot;&gt;
+                                      <a href="?act=chi-tiet-don-hang&id=<?= $donHangItem['id'] ?>" class="link-success fs-15"><i class="bi bi-eye"></i></a>
+
+                                      <a href="?act=form-sua-don-hang&id_don_hang=<?= $donHangItem['id'] ?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
+
+                                      <?php if ($donHangItem['trang_thai'] === 'Đã hủy'): ?>
+                                        <form action="?act=delete-don-hang" method="POST" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
+                                          <input type="hidden" name="id_don_hang" value="<?= $donHangItem['id'] ?>">
+                                          <button class="link-danger fs-15" style="border: none; background: none;">
+                                            <i class="ri-delete-bin-line"></i>
+                                          </button>
+                                        </form>
+                                      <?php endif; ?>
+                                    </div>
+                                  </td>
+                                </tr>
+                              <?php endforeach; ?>
+                            <?php else: ?>
+                              <tr>
+                                <td colspan="7" class="text-center">Không tìm thấy kết quả.</td>
+                              </tr>
+                            <?php endif; ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="d-none code-view">
+                    <pre class="language-markup" style="height: 275px;"><code>&lt;table class=&quot;table table-nowrap&quot;&gt;
     &lt;thead&gt;
         &lt;tr&gt;
             &lt;th scope=&quot;col&quot;&gt;ID&lt;/th&gt;
@@ -191,40 +186,40 @@
         &lt;/tr&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
-                    </div>
-                  </div><!-- end card-body -->
-                </div><!-- end card -->
+                  </div>
+                </div><!-- end card-body -->
+              </div><!-- end card -->
 
 
 
-              </div> <!-- end .h-100-->
+            </div> <!-- end .h-100-->
 
-            </div> <!-- end col -->
-          </div>
-
+          </div> <!-- end col -->
         </div>
-        <!-- container-fluid -->
+
       </div>
-      <!-- End Page-content -->
+      <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
 
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-6">
-              <script>
-                document.write(new Date().getFullYear())
-              </script> © Velzon.
-            </div>
-            <div class="col-sm-6">
-              <div class="text-sm-end d-none d-sm-block">
-                Design & Develop by Themesbrand
-              </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <script>
+              document.write(new Date().getFullYear())
+            </script> © Velzon.
+          </div>
+          <div class="col-sm-6">
+            <div class="text-sm-end d-none d-sm-block">
+              Design & Develop by Themesbrand
             </div>
           </div>
         </div>
-      </footer>
-    </div>
-    <!-- end main content-->
+      </div>
+    </footer>
+  </div>
+  <!-- end main content-->
 
   </div>
   <!-- END layout-wrapper -->

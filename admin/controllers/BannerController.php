@@ -36,9 +36,18 @@ class BannerController
       $ngay_tao = $_POST['ngay_tao'];
       $trang_thai = $_POST['trang_thai'];
 
-      $link_hinh_anh = $_FILES['link_hinh_anh'];
+      $link_hinh_anh = null;
+      if (isset($_FILES['link_hinh_anh']) && $_FILES['link_hinh_anh']['error'] == 0) {
+          $target_dir = "uploads/";
+          $target_file = $target_dir . basename($_FILES["link_hinh_anh"]["name"]);
 
-      //lưu hình ảnh
+          // Di chuyển file đến thư mục uploads
+          if (move_uploaded_file($_FILES["link_hinh_anh"]["tmp_name"], $target_file)) {
+              $link_hinh_anh = $target_file;
+          } else {
+              echo "Xin lỗi, đã xảy ra lỗi khi tải lên hình ảnh của bạn.";
+          }
+      }
 
       // var_dump($link_hinh_anh);die();
 
@@ -62,11 +71,11 @@ class BannerController
       if (empty($errors)) {
         // var_dump('ac');die;
         //nếu k có lỗi tiến hành thên banner vào csdl
-        $this->modelBanner->postData($ten_danh_muc_banner, $ngay_tao, $trang_thai, uploadFile($link_hinh_anh, '/uploads/'));
+        $this->modelBanner->postData($ten_danh_muc_banner, $ngay_tao, $trang_thai, $link_hinh_anh);
 
         // var_dump($san_pham_id);die();
         unset($_SESSION['errors']);
-        //  echo"theem thanh cong";                        
+        //  echo"theem thanh cong";
         header("Location: ?act=banners");
         exit();
       } else {
@@ -100,13 +109,32 @@ class BannerController
       $old_file = $banNerOld['link_hinh_anh']; //lấy ảnh cũ để phục vụ sửa ảnh
 
       $ten_danh_muc_banner = $_POST['ten_danh_muc_banner'];
-      $link_hinh_anh = $_FILES['link_hinh_anh'];
 
       $ngay_tao = $_POST['ngay_tao'];
       $trang_thai = $_POST['trang_thai'];
 
+// Xử lý tải lên hình ảnh nếu có
+$link_hinh_anh = null;
+if (isset($_FILES['link_hinh_anh']) && $_FILES['link_hinh_anh']['error'] == 0) {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["link_hinh_anh"]["name"]);
 
-      // var_dump($trang_thai);die();
+    // Kiểm tra xem có phải là hình ảnh không
+    $check = getimagesize($_FILES["link_hinh_anh"]["tmp_name"]);
+    if ($check !== false) {
+        // Di chuyển file vào thư mục uploads
+        move_uploaded_file($_FILES["link_hinh_anh"]["tmp_name"], $target_file);
+        $link_hinh_anh = $target_file; // Lưu đường dẫn file
+    } else {
+        echo "File không phải là hình ảnh.";
+        return;
+    }
+} else {
+    // Nếu không có hình ảnh mới, giữ nguyên hình ảnh cũ
+    $banNerw = $this->modelBanner->DetailUpdate($id);
+    $link_hinh_anh = $banNerw['link_hinh_anh']; // Giữ lại hình ảnh cũ
+}
+      // var_dump($link_hinh_anh);die();
 
 
       //Validate
@@ -124,25 +152,15 @@ class BannerController
       }
 
 
-      if ($link_hinh_anh['error'] !== 0) {
-        $errors['link_hinh_anh'] = 'phải chọn ảnh sản phẩm';
-      }
+     
 
       $_SESSION['error'] = $errors;
       //logic sửa ảnh
-      if (isset($link_hinh_anh) && $link_hinh_anh['error'] == UPLOAD_ERR_OK) {
-        //upload ảnh mới lên
-        $new_file = uploadFile($link_hinh_anh, './uploads/');
-        if (!empty($old_file)) { //nếu có ảnh cũ thì xóa đi
-          deleteFile($old_file);
-        }
-      } else {
-        $new_file = $old_file;
-      }
+
 
 
       if (empty($errors)) {
-        $this->modelBanner->UpdateCate($id, $ten_danh_muc_banner, $link_hinh_anh, $ngay_tao,  $trang_thai, $new_file);
+        $this->modelBanner->UpdateCate($id, $ten_danh_muc_banner, $link_hinh_anh, $ngay_tao,  $trang_thai);
         unset($_SESSION['error']);
         header('Location: ?act=banners');
         exit();

@@ -94,9 +94,9 @@
                                                                 <td class="fw-medium"><?= $index + 1 ?></td>
                                                                 <td><?= $banNer['ten_danh_muc_banner'] ?></td>
                                                                 <td>
-                                                                    <img src="<?=BASE_URL . $banNer['link_hinh_anh'] ?>" style="width: 100px" alt=""
-                                                                        onerror="this.onerror=null; this.src='https://cdn.mobilecity.vn/mobilecity-vn/images/2021/12/tong-hop-meo-giup-ban-chup-nhung-buc-anh-dep-hon-ve-thu-cung-cua-minh.jpg.webp'">
-                                                                </td>
+                                                                <img src="<?= $banNer['link_hinh_anh'] ?>" alt="Hình ảnh" style="width: 100px; height: auto;">
+
+                                                            </td>
 
                                                                 <td><?= $banNer['ngay_tao'] ?></td>
 

@@ -85,7 +85,7 @@
                                                             <th scope="col">Số lượng</th>
 
                                                             <th scope="col">Trạng thái</th>
-                                                           
+
                                                             <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
@@ -96,9 +96,9 @@
                                                                 <td><?= $SanPhams['ten_san_pham'] ?></td>
                                                                 <td><?= $SanPhams['gia_ban'] ?></td>
                                                                 <td><?= $SanPhams['ten_danh_muc'] ?></td>
-                                                               
+
                                                                 <td>
-                                                                    <img src="<?=BASE_URL . $SanPhams['hinh_anh'] ?>" style="width: 100px" alt=""
+                                                                    <img src="<?= BASE_URL . $SanPhams['hinh_anh'] ?>" style="width: 100px" alt=""
                                                                         onerror="this.onerror=null; this.src='https://cdn.mobilecity.vn/mobilecity-vn/images/2021/12/tong-hop-meo-giup-ban-chup-nhung-buc-anh-dep-hon-ve-thu-cung-cua-minh.jpg.webp'">
                                                                 </td>
                                                                 <td><?= $SanPhams['so_luong'] ?></td>
@@ -113,23 +113,24 @@
 
 
                                                                 </td>
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
+
+
+
+
+
 
 
 
                                                                 <td>
                                                                     <div class="hstack gap-3 flex-wrap">
+                                                                        <a href="?act=chi-tiet-san-pham&id_san_pham=<?= $SanPhams['id'] ?>" class="link-success fs-15"><i class="ri-eye-fill"></i></a>
                                                                         <a href="?act=form-sua-san-pham&id_san_pham=<?= $SanPhams['id'] ?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
-                                                                        <form action="?act=xoa-san-pham&id_san_pham=<?= $SanPhams['id'] ?>" method="POST"  enctype="multipart/form-data" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
+                                                                        <form action="?act=xoa-san-pham&id_san_pham=<?= $SanPhams['id'] ?>" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Bạn có đồng ý xóa không?')">
                                                                             <input type="hidden" name="id_san_pham" value="<?= $SanPhams['id'] ?>">
-                                                                        <button type="submit" class="link-danger fs-15" style="border : none ; background: none;" ><i class="ri-delete-bin-line"></i></button>
+                                                                            <button type="submit" class="link-danger fs-15" style="border : none ; background: none;"><i class="ri-delete-bin-line"></i></button>
 
                                                                         </form>
-                                                                       
+
                                                                     </div>
                                                                 </td>
                                                             </tr>

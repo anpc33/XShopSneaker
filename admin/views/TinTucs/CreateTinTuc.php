@@ -8,7 +8,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
 
-   
+
     <?php
     require_once "views/layouts/libs_css.php";
     ?>
@@ -18,7 +18,7 @@
 
     <div id="layout-wrapper">
 
-        
+
         <?php
         require_once "views/layouts/header.php";
         require_once "views/layouts/siderbar.php";
@@ -83,25 +83,38 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-12">
-                                                        <div class="form-floating">
-                                                            <textarea class="form-control" name="noi_dung" style="height: 100px;" required></textarea>
-                                                            <label for="noi_dung">Nội dung</label>
+
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="ForminputState" class="form-label">Trạng thái</label>
+                                                            <select name="trang_thai" id="ForminputState" class="form-select">
+                                                                <option selected disabled>Chọn trạng thái</option>
+                                                                <option value="1">Đăng </option>
+                                                                <option value="2">Không đăng</option>
+                                                            </select>
+                                                            <span class="text-danger">
+                                                                <?= !empty($_SESSION["Error"]['trang_thai']) ? $_SESSION["Error"]['trang_thai'] : '' ?>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label for="ForminputState" class="form-label">Trạng thái</label>
-                                                                <select name="trang_thai" id="ForminputState" class="form-select">
-                                                                    <option selected disabled>Chọn trạng thái</option>
-                                                                    <option value="1">Đăng </option>
-                                                                    <option value="2">Không đăng</option>
-                                                                </select>
-                                                                <span class="text-danger">
-                                                                    <?= !empty($_SESSION["Error"]['trang_thai']) ? $_SESSION["Error"]['trang_thai'] : '' ?>
-                                                                </span>
-                                                            </div>
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label for="" class="form-label">Nội dung</label>
+                                                            <textarea name="noi_dung" id="editor" class="ckeditor-classic"></textarea>
+                                                            <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+                                                            <script>
+                                                                // Khởi tạo CKEditor cho textarea
+                                                                ClassicEditor
+                                                                    .create(document.querySelector('#editor'))
+                                                                    .catch(error => {
+                                                                        console.error(error);
+                                                                    });
+                                                            </script>
+                                                            <span class="text-danger">
+                                                                <?= !empty($_SESSION['Error']['noi_dung']) ? $_SESSION['Error']['noi_dung'] : '' ?>
+                                                            </span>
                                                         </div>
+                                                    </div>
 
                                                     <div class="col-lg-12">
                                                         <div class="text-end">
@@ -113,8 +126,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                        </div> 
+                            </div>
+                        </div>
                     </div>
 
                 </div>

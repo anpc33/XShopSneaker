@@ -111,14 +111,16 @@
                                                                         case 'Đã giao hàng':
                                                                             echo "<span class='badge bg-success'>Đã giao hàng</span>";
                                                                             break;
-                                                                        case 'Giao hàng thất bại':
-                                                                            echo "<span class='badge bg-danger'>Giao hàng thất bại</span>";
+                                                                        case 'Đã hoàn thành':
+                                                                            echo "<span class='badge bg-danger'>Đã hoàn thành</span>";
                                                                             break;
-                                                                        case 'Đã hủy':
-                                                                            echo "<span class='badge bg-secondary'>Đã hủy</span>";
+                                                                        case 'Đã thất bại':
+                                                                            echo "<span class='badge bg-secondary'>Đã thất bại</span>";
                                                                             break;
-                                                                        default:
-                                                                            echo "<span class='badge bg-light'>Trạng thái không xác định</span>";
+                                                                        case 'Đã huỷ':
+                                                                            echo "<span class='badge bg-success'>Đã huỷ</span>";
+                                                                            break;
+                                                                       
                                                                     }
                                                                     ?>
 

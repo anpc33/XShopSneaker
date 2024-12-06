@@ -22,14 +22,16 @@ class LienHe{
             echo "Lỗi: " .$e->getMessage();
         }
     }
-    public function postData($ten, $email, $so_dien_thoai, $ngay_tao, $trang_thai){
+    public function postData($ten, $email, $so_dien_thoai,$noi_dung, $ngay_tao, $trang_thai){
         try {
-            $sql = 'INSERT INTO lien_hes(ten,email,so_dien_thoai,ngay_tao,trang_thai) values (:ten, :email, :so_dien_thoai, :ngay_tao, :trang_thai ) ';
+            $sql = 'INSERT INTO lien_hes(ten,email,so_dien_thoai,noi_dung, ngay_tao,trang_thai) values (:ten, :email, :so_dien_thoai,:noi_dung, :ngay_tao, :trang_thai ) ';
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':ten'=>$ten,
                             ':email'=>$email,
                             ':so_dien_thoai'=>$so_dien_thoai,
+                            ':noi_dung'=>$noi_dung,
+
                             ':ngay_tao'=>$ngay_tao,
                             ':trang_thai'=>$trang_thai
                         ]);
@@ -53,16 +55,13 @@ class LienHe{
             echo "Lỗi: " .$e->getMessage();
         }
     }
-    public function updateData($id, $ten, $email, $so_dien_thoai, $ngay_tao, $trang_thai){
+    public function updateData($id, $trang_thai){
         try {
-            $sql = 'UPDATE lien_hes SET  ten = :ten, email = :email, so_dien_thoai = :so_dien_thoai, ngay_tao = :ngay_tao, trang_thai = :trang_thai WHERE id = :id ';
+            $sql = 'UPDATE lien_hes SET  trang_thai = :trang_thai WHERE id = :id ';
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute(['id'=>$id,                          
-                            ':ten'=>$ten,
-                            ':email'=>$email,
-                            ':so_dien_thoai'=>$so_dien_thoai,
-                            ':ngay_tao'=>$ngay_tao,
+            $stmt->execute(['id'=>$id,
+
                             ':trang_thai'=>$trang_thai
 
                         ]);
@@ -72,7 +71,7 @@ class LienHe{
             echo "Lỗi: " .$e->getMessage();
         }
     }
-    //xóa dữ liệu 
+    //xóa dữ liệu
     public function deleteData($id){
         try {
             $sql = 'DELETE from lien_hes WHERE id = :id';

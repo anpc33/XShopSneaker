@@ -65,7 +65,25 @@
                                                         <tr>
                                                             <td class="fw-medium"><?= $tin['tin_tuc_id'] ?></td>
                                                             <td><?= $tin['tieu_de'] ?></td>
-                                                            <td><?= mb_substr($tin['noi_dung'], 0, 100) . '...' ?></td>
+                                                            <td>
+                                                                <?php
+                                                                // Lấy nội dung
+                                                                $noi_dung = $tin['noi_dung'];
+
+                                                                // Giới hạn số từ
+                                                                $maxWords = 10;
+                                                                $words = explode(' ', $noi_dung); // Tách chuỗi thành mảng các từ
+
+                                                                if (count($words) > $maxWords) {
+                                                                    // Nếu số từ vượt quá giới hạn, lấy 20 từ đầu tiên và thêm "..."
+                                                                    echo implode(' ', array_slice($words, 0, $maxWords)) . '...';
+                                                                } else {
+                                                                    // Nếu số từ nhỏ hơn hoặc bằng giới hạn, hiển thị toàn bộ nội dung
+                                                                    echo $noi_dung;
+                                                                }
+                                                                ?>
+                                                            </td>
+
                                                             <td>
                                                                 <img src="<?= $tin['hinh_anh'] ?>" alt="Hình ảnh" style="width: 100px; height: auto;">
 

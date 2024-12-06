@@ -46,6 +46,7 @@ class SanPhamController
 
       //mảng hình ảnh
       $img_array = $_FILES['img_array'];
+      // var_dump($img_array);die();
 
 
 
@@ -108,7 +109,7 @@ class SanPhamController
 
           $file_thumb
         );
-        // var_dump($san_pham_id);die();
+        // var_dump($file_thumb);die();
         //xử lý thêm album ảnh sản phẩm img_array
         if (!empty($img_array['name'])) {
           foreach ($img_array['name'] as $key => $value) {
@@ -125,6 +126,7 @@ class SanPhamController
         }
 
         header("Location: " . BASE_URL_ADMIN . '?act=san-phams');
+
         exit();
       } else {
         //trả lỗi
@@ -145,7 +147,7 @@ class SanPhamController
     $sanPham = $this->modelSanPham->getDetailSanPham($id);
     $listAnhSanPham = $this->modelSanPham->getListAnhSanPham($id);
     $danhMucs = $this->modelDanhMuc->getAll();
-    // var_dump($SanPham);
+    // var_dump($listAnhSanPham);
     // die();
     if ($sanPham) {
       require_once './views/sanphams/update_san_pham.php';
@@ -164,6 +166,7 @@ class SanPhamController
       //lấy ra dữ liệu cũ của sản phẩm
 
       $san_pham_id = $_POST['id'] ?? '';
+
       //truy vấn
       $sanPhamOld = $this->modelSanPham->getDetailSanPham($san_pham_id);
       $old_file = $sanPhamOld['hinh_anh']; //lấy ảnh cũ để phục vụ sửa ảnh
@@ -219,9 +222,7 @@ class SanPhamController
         $errors['danh_muc_id'] = 'danh mục phải chọn';
       }
 
-      if ($hinh_anh['error'] !== 0) {
-        $errors['hinh_anh'] = 'phải chọn ảnh sản ohaamr';
-      }
+
 
       $_SESSION['error'] = $errors;
       // var_dump($errors);die();
@@ -256,7 +257,7 @@ class SanPhamController
 
           $new_file
         );
-        // var_dump($status);die();                                 
+        // var_dump($status);die();
         header("Location:  ?act=san-phams");
         exit();
       } else {
@@ -264,7 +265,7 @@ class SanPhamController
 
         //đặt chỉ thị xóa session sau khi hiển thị form
         $_SESSION['flash'] = true;
-        header("Location:  ?act=form-sua-san-pham");
+        header("Location:  ?act=form-sua-san-pham&id_san_pham=" . $san_pham_id);
         exit();
       }
     }
@@ -273,6 +274,7 @@ class SanPhamController
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $san_pham_id = $_POST['san_pham_id'] ?? '';
+      // var_dump($san_pham_id);die();
 
       //lấy danh sách ảnh hiện tại của sản phẩm
       $listAnhSanPhamCurrent = $this->modelSanPham->getListAnhSanPham($san_pham_id);
@@ -325,6 +327,7 @@ class SanPhamController
         }
       }
       header("Location: " . BASE_URL_ADMIN . '?act=form-sua-san-pham&id_san_pham=' . $san_pham_id);
+      // echo "them thành cong";
       exit();
     }
   }
@@ -346,7 +349,8 @@ class SanPhamController
     $id = $_GET['id_san_pham'];
     $sanPham = $this->modelSanPham->getDetailSanPham($id);
     $listAnhSanPham = $this->modelSanPham->getListAnhSanPham($id);
-
+    $listBinhLuan = $this->modelSanPham->getBinhLuanFromSanPham($id);
+    $listDanhGia = $this->modelSanPham->getDanhGiaFromSanPham($id);
 
     // var_dump($SanPham);
     // die();
@@ -357,4 +361,50 @@ class SanPhamController
       exit();
     }
   }
+
+  public function updateTrangThaiBinhLuan(){
+    $id_binh_luan = $_POST['id_binh_luan'];
+    $name_view = $_POST['name_view'];
+    $binhLuan = $this -> modelSanPham->getDetailBinhLuan($id_binh_luan);
+
+    if ($binhLuan) {
+      $trang_thai_update = '';
+      if ($binhLuan['trang_thai'] == 1) {
+        $trang_thai_update = 2;
+      }else{
+        $trang_thai_update = 1;
+      }
+     $status =  $this -> modelSanPham ->updateTrangThaiBinhLuan($id_binh_luan, $trang_thai_update);
+
+     if ($status) {
+       if ($name_view == 'detail_sanpham') {
+        header("Location: ". BASE_URL_ADMIN . '?act=chi-tiet-san-pham&id_san_pham=' . $binhLuan['san_pham_id']);
+       }
+     }
+    //  var_dump($status);die();
+    require_once './views/sanphams/detailSanPham.php';
+    }
+  }
+  public function updateTrangThaiDanhGia(){
+    $id_danh_gia = $_POST['id_danh_gia'];
+    $name_view = $_POST['name_view'];
+    $danhGia = $this -> modelSanPham->getDetailDanhGia($id_danh_gia);
+
+    if ($danhGia) {
+      $trang_thai_update = '';
+      if ($danhGia['trang_thai'] == 1) {
+        $trang_thai_update = 2;
+      }else{
+        $trang_thai_update = 1;
+      }
+     $status =  $this -> modelSanPham ->updateTrangThaiDanhGia($id_danh_gia, $trang_thai_update);
+     if ($status) {
+       if ($name_view == 'detail_sanpham') {
+        header("Location: ". BASE_URL_ADMIN . '?act=chi-tiet-san-pham&id_san_pham=' . $danhGia['san_pham_id']);
+       }
+     }
+
+    }
+  }
+
 }

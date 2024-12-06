@@ -88,8 +88,10 @@
                                                                 <option value="Đã xác nhận" <?= $trangThai['trang_thai'] == 'Đã xác nhận' ? 'selected' : '' ?>>Đã xác nhận</option>
                                                                 <option value="Đang vận chuyển" <?= $trangThai['trang_thai'] == 'Đang vận chuyển' ? 'selected' : '' ?>>Đang vận chuyển</option>
                                                                 <option value="Đã giao hàng" <?= $trangThai['trang_thai'] == 'Đã giao hàng' ? 'selected' : '' ?>>Đã giao hàng</option>
-                                                                <option value="Giao hàng thất bại" <?= $trangThai['trang_thai'] == 'Giao hàng thất bại' ? 'selected' : '' ?>>Giao hàng thất bại</option>
-                                                                <option value="Đã hủy" <?= $trangThai['trang_thai'] == 'Đã hủy' ? 'selected' : '' ?>>Đã hủy</option>
+                                                                <option value="Đã hoàn thành" <?= $trangThai['trang_thai'] == 'Đã hoàn thành' ? 'selected' : '' ?>>Đã hoàn thành</option>
+                                                                <option value="Đã thất bại" <?= $trangThai['trang_thai'] == 'Đã thất bại' ? 'selected' : '' ?>>Đã thất bại</option>
+                                                                <option value="Đã huỷ" <?= $trangThai['trang_thai'] == 'Đã huỷ' ? 'selected' : '' ?>>Đã huỷ</option>
+
                                                             </select>
                                                             <span class="text-danger">
                                                                 <?= !empty($_SESSION["errors"]['trang_thai']) ? $_SESSION["errors"]['trang_thai'] : '' ?>
