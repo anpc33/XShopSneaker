@@ -1,4 +1,5 @@
-## AdadisXShop
+## XShopSneaker
+
 
 ## Tổng quan
 
@@ -60,7 +61,7 @@ Yêu cầu:
 
 Các bước:
 
-- Clone repo: git clone https://github.com/anpc33/adadisXshop.git
+- Clone repo: git clone https://github.com/anpc33/XShopSneaker.git
 
 >Thiết lập cơ sở dữ liệu:
 
